@@ -20,7 +20,8 @@ function NumbersTable(props) {
 }
 
 function mapStateToProps(state) {
-  return { numbers: state.numbers }
+  console.log(state);
+  return { numbers: state.present.numbers }
 }
 
 

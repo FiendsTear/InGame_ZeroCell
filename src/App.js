@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import Menu from './components/Menu';
+import Undo from './components/Undo';
 import NumbersTable from './components/NumbersTable';
 import { connect } from "react-redux";
 
@@ -10,18 +11,18 @@ function App(props) {
     element = <Menu/>;
   }
   else {
-    element = <NumbersTable/>;
+    element = <div><Undo/><NumbersTable/></div>;
   }
 
   return (
-    <div>
+    <main>
       {element}
-    </div>
+    </main>
   );
 }
 
 function mapStateToProps(state) {
-  return { started: state.started }
+  return { started: state.present.started }
 }
 
 export default connect(

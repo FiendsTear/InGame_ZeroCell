@@ -1,3 +1,5 @@
+import { ActionCreators } from 'redux-undo';
+
 export const NEW_GAME = 'NEW_GAME';
 export const REDUCE_NUMBER = 'REDUCE_NUMBER';
 
@@ -15,3 +17,5 @@ export const reduceNumber = (rowIndex, columnIndex) => ({
     columnIndex: columnIndex
   }
 })
+
+export const undo = ActionCreators.undo;

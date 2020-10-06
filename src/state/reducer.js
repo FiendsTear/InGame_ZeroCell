@@ -1,11 +1,12 @@
 import { NEW_GAME, REDUCE_NUMBER } from './actions';
+import undoable from 'redux-undo';
 
 const initialState = {
   started: false,
   numbers:[]
 };
 
-export default function (state = initialState, action) {
+const reducer = (state = initialState, action) => {
   let newState = {};
   newState.started = state.started;
   newState.numbers = state.numbers.slice();
@@ -79,3 +80,5 @@ export default function (state = initialState, action) {
   }
   return newState;
 }
+
+export default undoable(reducer);

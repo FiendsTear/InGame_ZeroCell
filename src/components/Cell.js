@@ -14,7 +14,7 @@ function Cell(props) {
 }
 
 function mapStateToProps(state, ownProps) {
-  return { value: state.numbers[ownProps.rowIndex][ownProps.columnIndex] }
+  return { value: state.present.numbers[ownProps.rowIndex][ownProps.columnIndex] }
 }
 
 export default connect(
