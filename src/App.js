@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import Menu from './components/Menu';
 import Undo from './components/Undo';
+import Restart from './components/Restart';
 import NumbersTable from './components/NumbersTable';
 import { connect } from "react-redux";
 
@@ -11,7 +12,7 @@ function App(props) {
     element = <Menu/>;
   }
   else {
-    element = <div><Undo/><NumbersTable/></div>;
+    element = <div><Restart/><Undo/><NumbersTable/></div>;
   }
 
   return (

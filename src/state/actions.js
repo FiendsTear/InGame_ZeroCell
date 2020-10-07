@@ -19,3 +19,4 @@ export const reduceNumber = (rowIndex, columnIndex) => ({
 })
 
 export const undo = ActionCreators.undo;
+export const jump = ActionCreators.jump;

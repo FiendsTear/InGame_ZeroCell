@@ -3,6 +3,7 @@ import undoable from 'redux-undo';
 
 const initialState = {
   started: false,
+  stepsCount: 0,
   numbers:[]
 };
 
@@ -10,6 +11,7 @@ const reducer = (state = initialState, action) => {
   let newState = {};
   newState.started = state.started;
   newState.numbers = state.numbers.slice();
+  newState.stepsCount = state.stepsCount;
   let rowIndex;
   let columnIndex;
   switch (action.type) {
@@ -36,6 +38,7 @@ const reducer = (state = initialState, action) => {
           numbersGenerated = true;
         }; 
       }
+      return newState;
       break;
     case REDUCE_NUMBER:
       let reducingAllowed = false;
@@ -56,7 +59,11 @@ const reducer = (state = initialState, action) => {
           }
         });
       }
-      if (reducingAllowed) {
+      if (!reducingAllowed) {
+        return state;
+      }
+      else {
+        newState.stepsCount++;
         rowIndexesAffected.forEach(rowIndex => {
           if (rowIndex >= 0 && rowIndex < 10) {
             row = newState.numbers[rowIndex].slice();
@@ -69,6 +76,7 @@ const reducer = (state = initialState, action) => {
                 else {
                   value = 0;
                 }
+
                 row[columnIndex] = value;
               }
             }) 
@@ -76,9 +84,11 @@ const reducer = (state = initialState, action) => {
           }
         });
       }
+      return newState;
       break;
+    default:
+      return state;
   }
-  return newState;
 }
 
 export default undoable(reducer);
