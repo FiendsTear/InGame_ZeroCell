@@ -4,6 +4,7 @@ import Menu from './components/Menu';
 import Undo from './components/Undo';
 import Restart from './components/Restart';
 import NewGame from './components/NewGame';
+import Progress from './components/Progress';
 import NumbersTable from './components/NumbersTable';
 import { connect } from "react-redux";
 
@@ -13,7 +14,7 @@ function App(props) {
     element = <Menu/>;
   }
   else {
-    element = <div><NewGame/><Restart/><Undo/><NumbersTable/></div>;
+    element = <div><NewGame/><Restart/><Undo/><Progress/><NumbersTable/></div>;
   }
 
   return (

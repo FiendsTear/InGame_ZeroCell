@@ -4,6 +4,7 @@ import undoable from 'redux-undo';
 const initialState = {
   started: false,
   stepsCount: 0,
+  zeroCells: 0,
   numbers:[]
 };
 
@@ -12,6 +13,7 @@ const reducer = (state = initialState, action) => {
   newState.started = state.started;
   newState.numbers = state.numbers.slice();
   newState.stepsCount = state.stepsCount;
+  newState.zeroCells = state.zeroCells;
   let rowIndex;
   let columnIndex;
   switch (action.type) {
@@ -73,15 +75,12 @@ const reducer = (state = initialState, action) => {
             row = newState.numbers[rowIndex].slice();
             columnIndexesAffected.forEach(columnIndex => {
               if (columnIndex >= 0 && columnIndex < 10) {
-                let value;
-                if (row[columnIndex] - 1 > 0) {
-                  value = row[columnIndex] - 1;
+                if (row[columnIndex] - 1 === 0) {
+                  newState.zeroCells++;
                 }
-                else {
-                  value = 0;
+                if (row[columnIndex] - 1 >= 0) {
+                  row[columnIndex] = row[columnIndex] - 1;
                 }
-
-                row[columnIndex] = value;
               }
             }) 
             newState.numbers[rowIndex] = row;
