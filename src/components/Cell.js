@@ -8,7 +8,7 @@ function Cell(props) {
   }
 
   return (
-    <td onClick={handleCellClick}>
+    <td className={"numbersTable-cell numbersTable-cell_value_" + props.value} onClick={handleCellClick}>
       {props.value}
     </td>);
 }

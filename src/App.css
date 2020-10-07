@@ -1,5 +1,88 @@
-.App {
-	position: absolute;
+.app {
+	display: flex;
+	justify-content: center;
 	width: 100%;
 	background: #fff;
+	font-family: Arial, Helvetica, sans-serif;
+	vertical-align: middle;
+}
+
+.numbersTable {
+	border-collapse: collapse;
+	user-select: none;
+}
+
+.numbersTable-cell {
+	width: 40px;
+	height: 40px;
+	font-size: 2rem;
+	color: #fff;
+	text-align: center; 
+	vertical-align: middle;
+}
+
+.numbersTable-cell_value_0 {
+	background-color: #ffefe0;
+	color: #ffefe0;
+}
+
+.numbersTable-cell_value_1, .numbersTable-cell_value_2 {
+	background-color: #fdcb9e;
+}
+
+.numbersTable-cell_value_3, .numbersTable-cell_value_4, .menu-easyGame, .gameHeader > button {
+	background-color: #00b7c2;
+}
+
+.numbersTable-cell_value_5, .numbersTable-cell_value_6, .menu-mediumGame {
+	background-color: #0f4c75;
+}
+
+.numbersTable-cell_value_7, .numbersTable-cell_value_8, .menu-hardGame {
+	background-color: #1b262c;
+}
+
+.menu {
+	margin-top: 150px;
+}
+
+.menu-newGame {
+	color: #fdcb9e;
+	text-align: center;
+	user-select: none;
+}
+
+.menu-easyGame, .menu-mediumGame, .menu-hardGame {
+	display: inline-block;
+	margin-right: 10px;
+	padding: 3px;
+	color: #fff;
+	font-size: 1.5rem;
+	border-radius: 5px;
+	text-align: center; 
+	user-select: none;
+}
+
+.gameHeader {
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 10px;
+	font-size: 1.5rem;
+}
+
+.gameHeader > button {
+	border-radius: 8px;
+	color: #fff;
+	border: 0px;
+	font: inherit;
+	margin-right: 8px;
+}
+
+.gameHeader > button:focus {
+	outline: 0px;
+}
+
+.gameHeader > span {
+	color: #00b7c2;
+	margin-left: auto;
 }

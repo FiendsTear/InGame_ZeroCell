@@ -7,7 +7,7 @@ function UndoButton(props) {
     props.undo();
   }
   return (
-    <button onClick={handleClick}>Undo</button>
+    <button onClick={handleClick}>↶</button>
   )
 }
 

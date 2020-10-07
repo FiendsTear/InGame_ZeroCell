@@ -9,11 +9,11 @@ function Menu(props) {
   }
 
   return (
-    <div>
-      <h1>New Game</h1>
-      <div data-difficulty={MAX_NUMBER.easy} onClick={startGame}>easy</div>
-      <div data-difficulty={MAX_NUMBER.medium} onClick={startGame}>medium</div>
-      <div data-difficulty={MAX_NUMBER.hard} onClick={startGame}>hard</div>
+    <div className="menu">
+      <h1 className="menu-newGame">New Game</h1>
+      <span className="menu-easyGame" data-difficulty={MAX_NUMBER.easy} onClick={startGame}>easy</span>
+      <span className="menu-mediumGame" data-difficulty={MAX_NUMBER.medium} onClick={startGame}>medium</span>
+      <span className="menu-hardGame" data-difficulty={MAX_NUMBER.hard} onClick={startGame}>hard</span>
     </div>);
 }
 

@@ -7,7 +7,7 @@ function RestartButton(props) {
     props.jump(-props.stepsToRestart);
   }
   return (
-    <button onClick={handleClick}>Restart</button>
+    <button onClick={handleClick}>restart</button>
   )
 }
 

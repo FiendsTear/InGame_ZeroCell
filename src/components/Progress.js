@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 
 function Progress(props) {
   return (
-  <span>Passed: {props.zeroCells + '%'}</span>
+  <span>passed: {props.zeroCells + '%'}</span>
   )
 }
 

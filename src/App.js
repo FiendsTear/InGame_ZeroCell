@@ -14,11 +14,20 @@ function App(props) {
     element = <Menu/>;
   }
   else {
-    element = <div><NewGame/><Restart/><Undo/><Progress/><NumbersTable/></div>;
+    element = 
+      <div>
+        <header className="gameHeader">
+          <NewGame/>
+          <Restart/>
+          <Undo/>
+          <Progress/>
+        </header>
+        <NumbersTable/>
+      </div>;
   }
 
   return (
-    <main>
+    <main className="app">
       {element}
     </main>
   );

@@ -4,7 +4,7 @@ import Cell from './Cell';
 
 function NumbersTable(props) {
   return (
-    <table>
+    <table className="numbersTable">
       <tbody>
         {props.numbers.map((row, rowIndex) => {
           return (

@@ -7,7 +7,7 @@ function NewGameButton(props) {
     props.newGame();
   }
   return (
-    <button onClick={handleClick}>New Game</button>
+    <button onClick={handleClick}>new game</button>
   )
 }
 
