@@ -1,9 +1,10 @@
 import React from 'react';
 import { connect } from "react-redux";
+import { TABLE_SIZE } from '../constants';
 
 function Progress(props) {
   return (
-  <span>passed: {props.zeroCells + '%'}</span>
+  <span>passed: {Math.floor(props.zeroCells * 100/(TABLE_SIZE.width * TABLE_SIZE.height)) + '%'}</span>
   )
 }
 

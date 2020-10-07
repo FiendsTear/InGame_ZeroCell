@@ -4,7 +4,7 @@ import Cell from './Cell';
 
 function NumbersTable(props) {
   return (
-    <table className="numbersTable">
+    <table className={"numbersTable" + (props.won ? " numbersTable_won" : "") + (props.failed ? " numbersTable_failed" : "")}>
       <tbody>
         {props.numbers.map((row, rowIndex) => {
           return (
@@ -20,7 +20,11 @@ function NumbersTable(props) {
 }
 
 function mapStateToProps(state) {
-  return { numbers: state.present.numbers }
+  return { 
+    numbers: state.present.numbers,
+    won: state.present.won,
+    failed: state.present.failed
+  }
 }
 
 

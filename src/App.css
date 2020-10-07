@@ -86,3 +86,15 @@
 	color: #00b7c2;
 	margin-left: auto;
 }
+
+.numbersTable_failed {
+	background-color: red;
+}
+
+.numbersTable_won {
+	background-color: #33c6cf;
+}
+
+.numbersTable_failed .numbersTable-cell, .numbersTable_won .numbersTable-cell {
+	opacity: 0.6;
+}
