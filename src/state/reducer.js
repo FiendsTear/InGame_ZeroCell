@@ -1,4 +1,4 @@
-import { NEW_GAME, REDUCE_NUMBER } from './actions';
+import { START_GAME, NEW_GAME, REDUCE_NUMBER } from './actions';
 import undoable from 'redux-undo';
 
 const initialState = {
@@ -16,6 +16,10 @@ const reducer = (state = initialState, action) => {
   let columnIndex;
   switch (action.type) {
     case NEW_GAME:
+      newState = initialState;
+      return newState;
+      break;
+    case START_GAME:
       newState.started = true;
 
       const maxNumber = action.payload.maxNumber;
