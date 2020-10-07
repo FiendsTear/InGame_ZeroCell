@@ -35,8 +35,40 @@ const reducer = (state = initialState, action) => {
       rowIndex = 0;
       columnIndex = 0;
       while (!numbersGenerated) {
-        // update to forbid generation of max number in the corners
-        const number = Math.floor(Math.random() * (maxNumber))+ 1;
+        let number = Math.floor(Math.random() * (maxNumber))+ 1;
+        if (rowIndex >= 1 && columnIndex >= 1) {
+          // we'll check just one cell on top-left to reduce algorithm complexity
+          let cellZeroable = false;
+          while (!cellZeroable) {
+            // i'm assuming that for now the opimal way to check this
+            // is to sum cell values on each corner of cell
+            // and compare it to this cell value
+            number = Math.floor(Math.random() * (maxNumber)) + 1;
+            const checkingCellValue = newState.numbers[rowIndex - 1][columnIndex - 1];
+            let topLeftCellValue = 0;
+            let topRightCellValue = 0;
+            let bottomLeftCellValue = 0;
+            if (rowIndex > 1) {
+              topRightCellValue = newState.numbers[rowIndex - 2][columnIndex];
+              if (columnIndex > 1) {
+                topLeftCellValue = newState.numbers[rowIndex - 2][columnIndex - 2];
+              }
+            }
+            if (columnIndex > 1) {
+              // row isn't in the numbers yet
+              bottomLeftCellValue = row[columnIndex - 2];
+            }
+            const sum = (
+              number + 
+              topLeftCellValue +
+              topRightCellValue +
+              bottomLeftCellValue
+            );
+            if (checkingCellValue <= sum) {
+              cellZeroable = true;
+            }
+          }
+        }
         row.push(number);
         columnIndex++;
         if (columnIndex === TABLE_SIZE.width) {
