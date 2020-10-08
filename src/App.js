@@ -6,37 +6,42 @@ import Restart from './components/Restart';
 import NewGame from './components/NewGame';
 import Progress from './components/Progress';
 import NumbersTable from './components/NumbersTable';
-import { connect } from "react-redux";
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 function App(props) {
-  let element;
-  if (props.started === false) {
-    element = <Menu/>;
-  }
-  else {
-    element = 
-      <div>
-        <header className="gameHeader">
-          <NewGame/>
-          <Restart/>
-          <Undo/>
-          <Progress/>
-        </header>
-        <NumbersTable/>
-      </div>;
-  }
+	let element;
+	if (props.started === false) {
+		element = <Menu/>;
+	}
+	else {
+		element = 
+			<div>
+				<header className="gameHeader">
+					<NewGame/>
+					<Restart/>
+					<Undo/>
+					<Progress/>
+				</header>
+				<NumbersTable/>
+			</div>;
+	}
 
-  return (
-    <main className="app">
-      {element}
-    </main>
-  );
+	return (
+		<main className="app">
+			{element}
+		</main>
+	);
 }
 
 function mapStateToProps(state) {
-  return { started: state.present.started }
+	return { started: state.present.started };
 }
 
+App.propTypes = {
+	started: PropTypes.bool,
+};
+
 export default connect(
-  mapStateToProps
-)(App)
+	mapStateToProps
+)(App);
