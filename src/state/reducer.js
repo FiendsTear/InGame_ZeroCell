@@ -31,6 +31,7 @@ const reducer = (state = initialState, action) => {
 		const maxNumber = action.payload.maxNumber;
 		let numbersGenerated = false;
 		let row = [];
+		newState.numbers.push(row);
 		rowIndex = 0;
 		columnIndex = 0;
 		while (!numbersGenerated) {
@@ -39,41 +40,18 @@ const reducer = (state = initialState, action) => {
 				// we'll check just one cell on top-left to reduce algorithm complexity
 				let cellZeroable = false;
 				while (!cellZeroable) {
-					// i'm assuming that for now the opimal way to check this
-					// is to sum cell values on each corner of cell
-					// and compare it to this cell value
 					number = Math.floor(Math.random() * (maxNumber)) + 1;
-					const checkingCellValue = newState.numbers[rowIndex - 1][columnIndex - 1];
-					let topLeftCellValue = 0;
-					let topRightCellValue = 0;
-					let bottomLeftCellValue = 0;
-					if (rowIndex > 1) {
-						topRightCellValue = newState.numbers[rowIndex - 2][columnIndex];
-						if (columnIndex > 1) {
-							topLeftCellValue = newState.numbers[rowIndex - 2][columnIndex - 2];
-						}
-					}
-					if (columnIndex > 1) {
-						// row isn't in the numbers yet
-						bottomLeftCellValue = row[columnIndex - 2];
-					}
-					const sum = (
-						number + 
-							topLeftCellValue +
-							topRightCellValue +
-							bottomLeftCellValue
-					);
-					if (checkingCellValue <= sum) {
-						cellZeroable = true;
-					}
+					cellZeroable = checkCellZeroability(newState.numbers, rowIndex - 1, columnIndex - 1, number);
 				}
 			}
 			row.push(number);
 			columnIndex++;
 			if (columnIndex === TABLE_SIZE.width) {
 				rowIndex++;
-				newState.numbers.push(row);
 				row = [];
+				if (rowIndex < TABLE_SIZE.height) {
+					newState.numbers.push(row);
+				}
 				columnIndex = 0;
 			}
 			if (rowIndex === TABLE_SIZE.height) {
@@ -172,6 +150,61 @@ function checkProgress(numbers) {
 		result = 'win';
 	}
 	return result;
+}
+
+function checkCellZeroability(numbers, rowIndex, columnIndex, generatedNumber) {
+	let cellZeroable = false;
+	const checkingCellValue = numbers[rowIndex][columnIndex];
+	// corners
+	let topLeftCellValue = 0;
+	let topRightCellValue = 0;
+	let bottomLeftCellValue = 0;
+	if (rowIndex > 0) {
+		topRightCellValue = numbers[rowIndex - 1][columnIndex + 1];
+		if (columnIndex > 0) {
+			topLeftCellValue = numbers[rowIndex - 1][columnIndex - 1];
+		}
+	}
+	if (columnIndex > 0) {
+		bottomLeftCellValue = numbers[rowIndex + 1][columnIndex - 1];
+	}
+	const sum = (
+		generatedNumber + 
+		topLeftCellValue +
+		topRightCellValue +
+		bottomLeftCellValue
+	);
+	if (checkingCellValue <= sum) {
+		cellZeroable = true;
+		return cellZeroable;
+	}
+	// top + bottom
+	let topCellValue;
+	if (rowIndex > 0) {
+		topCellValue = numbers[rowIndex - 1][columnIndex];
+	}
+	else {
+		topCellValue = 0;
+	}
+	const bottomCellValue = numbers[rowIndex + 1][columnIndex];
+	if (checkingCellValue <= (topCellValue + bottomCellValue)) {
+		cellZeroable = true;
+		return cellZeroable;
+	}
+	// left + right
+	let leftCellValue;
+	if (columnIndex > 0) {
+		leftCellValue = numbers[rowIndex][columnIndex - 1];
+	}
+	else {
+		leftCellValue = 0;
+	}
+	const rightCellValue = numbers[rowIndex][columnIndex + 1];
+	if (checkingCellValue <= (leftCellValue + rightCellValue)) {
+		cellZeroable = true;
+		return cellZeroable;
+	}
+	return cellZeroable;
 }
 
 export default undoable(reducer);
