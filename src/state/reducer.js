@@ -12,13 +12,8 @@ const initialState = {
 };
 
 const reducer = (state = initialState, action) => {
-	let newState = {};
-	newState.started = state.started;
-	newState.won = state.won;
-	newState.failed = state.failed;
+	let newState = Object.assign({}, state);
 	newState.numbers = state.numbers.slice();
-	newState.stepsCount = state.stepsCount;
-	newState.zeroCells = state.zeroCells;
 	let rowIndex;
 	let columnIndex;
 	switch (action.type) {

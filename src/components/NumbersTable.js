@@ -2,22 +2,30 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Cell from './Cell';
 import PropTypes from 'prop-types';
+import Congratulations from './Congratulations';
 
 function NumbersTable(props) {
+	let congratulations;
+	if (props.won) {
+		congratulations = Congratulations();
+	}
 	return (
-		<table className={'numbersTable' + (props.won ? ' numbersTable_won' : '') + (props.failed ? ' numbersTable_failed' : '')}>
-			<tbody>
-				{props.numbers.map((row, rowIndex) => {
-					return (
-						<tr key={rowIndex}>
-							{row.map((number, columnIndex) => {
-								return <Cell key={columnIndex} rowIndex={rowIndex} columnIndex={columnIndex}>{number}</Cell>;
-							})}
-						</tr>
-					);
-				})}
-			</tbody>
-		</table>);
+		<section>
+			<table className={'numbersTable' + (props.won ? ' numbersTable_won' : '') + (props.failed ? ' numbersTable_failed' : '')}>
+				<tbody>
+					{props.numbers.map((row, rowIndex) => {
+						return (
+							<tr key={rowIndex}>
+								{row.map((number, columnIndex) => {
+									return <Cell key={columnIndex} rowIndex={rowIndex} columnIndex={columnIndex}>{number}</Cell>;
+								})}
+							</tr>
+						);
+					})}
+				</tbody>
+			</table>
+			{congratulations}
+		</section>);
 }
 
 function mapStateToProps(state) {

@@ -98,3 +98,8 @@
 .numbersTable_failed .numbersTable-cell, .numbersTable_won .numbersTable-cell {
 	opacity: 0.6;
 }
+
+.congratulations {
+	color: #fdcb9e;
+	text-align: center;
+}
